@@ -1,5 +1,6 @@
 from random import randint
 
+
 class Environment(object):
     """ Environment
 
@@ -20,6 +21,7 @@ class Environment(object):
         self.catcher.take_action(action)
 
     def increment_time(self):
+        # TODO: Somehow allow for object interactions
         for item in self.items:
             item.increment_time()
 
