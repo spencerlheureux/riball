@@ -131,12 +131,3 @@ if __name__ == '__main__':
     x_len = 500
     y_len = 500
     world = Environment(x_len=x_len, y_len=y_len)
-    ball = Ball(x_len=x_len, y_len=y_len)
-    world.add_environment_item(ball)
-    print(ball.get_state())
-    for x in range(10):
-        world.increment_time()
-        print(ball.get_state())
-        print(world.get_world_state())
-
-
