@@ -1,7 +1,12 @@
+import math
 import time
 from random import randint
 
 import tkinter as tk
+
+
+# TODO: Genericize Environment class more, create an inherited class 
+# that is more specific to my example use case
 
 
 class Environment(object):
@@ -29,8 +34,17 @@ class Environment(object):
 
     def increment_time(self):
         # TODO: Somehow allow for object interactions
+        # TODO: Create a built-in rewards system with generic architecture
         for item in self.items.values():
             item.increment_time(self.time_step)
+        self.interactions()
+    
+    def interactions(self):
+        # TODO: Look into making this cleaner? More efficient?
+        for name, item in self.items.items():
+            for secondary_item in self.items.values():
+                if name != secondary_item.name:
+                    item.interaction(secondary_item)
 
     def get_world_state(self):
         return [attr for item in self.items for attr in item.get_state()]
@@ -114,9 +128,11 @@ class Ball(EnvironmentItem):
         self.y_pos += (self.y_vel * time_step)
 
     def interaction(self, obj):
-        if type(obj) == Catcher:
-            print('do something')
-
+        # Sample interaction, if another ball gets too close, reset position
+        distance = math.sqrt((self.x_pos - obj.x_pos)**2 + (self.y_pos - obj.y_pos)**2)
+        if distance <= 50 and distance >= 49:
+            self.x_pos = randint(1, self.x_len)
+            self.y_pos = randint(1, self.y_len)
 
 
 class Catcher(EnvironmentItem):
