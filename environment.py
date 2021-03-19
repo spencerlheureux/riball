@@ -12,7 +12,8 @@ import tkinter as tk
 class Environment(object):
     """ Environment
 
-    Represents a world/window.
+    Represents a simple world, and all information about its state.
+
     """
 
     def __init__(self, x_len=500, y_len=500, max_speed=20):
@@ -47,7 +48,8 @@ class Environment(object):
                     item.interaction(secondary_item)
 
     def get_world_state(self):
-        return [attr for item in self.items for attr in item.get_state()]
+        return [attr for item in self.items.values() 
+                for attr in item.get_state()]
 
     def render(self):
         """ Render world """
@@ -59,9 +61,6 @@ class Environment(object):
 
         # Run world
         frame_number = 0
-        for item, label in labels:
-            label.place(x=item.x_pos, y=item.y_pos)
-        frame.update()
         while True:
             for item, label in labels:
                 label.place(x=item.x_pos, y=item.y_pos)

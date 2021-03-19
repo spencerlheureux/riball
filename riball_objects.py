@@ -1,13 +1,21 @@
 import math
 from random import randint
 
-from environment import EnvironmentItem
+from environment import Environment, EnvironmentItem
+
+
+class RiEnvironment(Environment):
+    """ Ri Environment
+
+    An example environment built specific to this example.
+    """
+
 
 
 class Ball(EnvironmentItem):
     """ Ball
 
-    Represents a ball moving through the world.
+    Represents a ball moving through the Environment.
     """
     def __init__(self, *args, x_len=500, y_len=500, **kwargs):
         super().__init__(*args, **kwargs)
