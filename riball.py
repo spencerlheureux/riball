@@ -2,7 +2,8 @@ import time
 
 import tkinter as tk
 
-from environment import *
+from environment import Environment
+from riball_objects import Ball
 
 
 world_size_x = 200
