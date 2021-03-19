@@ -10,19 +10,14 @@ world_size_y = 200
 
 
 # Initialize world
-env = Environment(x_len=world_size_x, y_len=world_size_y)
-ball = Ball(x_len=world_size_x, y_len=world_size_y)
-env.add_environment_item(ball)
+max_speed = 20
+env = Environment(x_len=world_size_x, y_len=world_size_y, max_speed=max_speed)
 
-# Initialize visuals
-window = tk.Tk()
-frame = tk.Frame(master=window, width=world_size_x, height=world_size_y)
-frame.pack()
-label = tk.Label(master=frame, text="Ball", bg="red")
+# Add a Ball item to world
+ball1 = Ball('Ball1', x_len=world_size_x, y_len=world_size_y)
+ball2 = Ball('Ball2', x_len=world_size_x, y_len=world_size_y)
+env.add_environment_item(ball1)
+env.add_environment_item(ball2)
 
-# Run world
-while True:
-    label.place(x=ball.x_pos, y=ball.y_pos)
-    frame.update()
-    env.increment_time()
-    time.sleep(0.033)
+# Render world at 30fps
+env.render()
